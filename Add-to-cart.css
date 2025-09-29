@@ -1,0 +1,159 @@
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f3;
+    margin: 0;
+    padding: 40px;
+  }
+
+  .payment-container {
+    background-color: #fff;
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 15px;
+  }
+
+  .cart-item-details {
+    flex-grow: 1;
+  }
+
+  .remove-btn {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .total {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  .buy-btn {
+    display: block;
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .buy-btn:hover {
+    background-color: #218838;
+  }
+
+  .back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  .back-btn:hover {
+    background-color: red;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding: 20px;
+    }
+
+    .payment-container {
+      padding: 20px;
+      width: 100%;
+    }
+
+    li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .cart-item-image {
+      margin-bottom: 10px;
+    }
+
+    .remove-btn {
+      align-self: flex-end;
+    }
+
+    .back-btn {
+      top: 10px;
+      left: 10px;
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+
+    .total {
+      font-size: 16px;
+    }
+
+    .buy-btn {
+      font-size: 15px;
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .payment-container {
+      padding: 15px;
+    }
+
+    .buy-btn {
+      font-size: 14px;
+      padding: 8px;
+    }
+
+    .back-btn {
+      font-size: 12px;
+      padding: 5px 8px;
+    }
+
+    h2 {
+      font-size: 1.2em;
+    }
+  }

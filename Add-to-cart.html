@@ -1,0 +1,131 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart Summary</title>
+  <link rel="stylesheet" type="text/css" href="Add-to-cart.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <div class="payment-container">
+    <h2><i class="fas fa-shopping-cart"></i> Your Cart Summary</h2>
+    <div class="cart-items-container">
+      <ul id="cart-summary"></ul>
+    </div>
+    <div class="total-container">
+      <p class="total">Total: $<span id="total-amount">0.00</span></p>
+      <button class="buy-btn" onclick="goToPayment()">Proceed to Payment <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <button class="back-btn" onclick="goToProject()"><i class="fas fa-arrow-left"></i> Back</button>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    const cartSummary = document.getElementById("cart-summary");
+    const totalAmount = document.getElementById("total-amount");
+
+    function calculateTotal() {
+      return cart.reduce((sum, item) => sum + (item.selectedPrice * item.quantity), 0);
+    }
+
+    function renderCart() {
+      cartSummary.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartSummary.innerHTML = `
+          <li class="empty-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <p>Your cart is empty.</p>
+            <small>Add some items to get started!</small>
+          </li>
+        `;
+        totalAmount.textContent = "0.00";
+        localStorage.setItem("cartItems", JSON.stringify([]));
+        localStorage.setItem("cartTotal", "0.00");
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.className = "cart-item";
+
+        const itemImage = document.createElement("img");
+        itemImage.src = item.image;
+        itemImage.alt = item.name;
+        itemImage.className = "cart-item-image";
+
+        const itemDetails = document.createElement("div");
+        itemDetails.className = "cart-item-details";
+
+        const itemName = document.createElement("h4");
+        itemName.textContent = item.name;
+
+        const itemSize = document.createElement("p");
+        itemSize.textContent = `Size: ${item.selectedSize || 'Default'}`;
+        itemSize.className = "item-size";
+
+        const itemQuantity = document.createElement("p");
+        itemQuantity.textContent = `Quantity: ${item.quantity}`;
+        itemQuantity.className = "item-quantity";
+
+        const itemPrice = document.createElement("p");
+        itemPrice.textContent = `Total: $${(item.selectedPrice * item.quantity).toFixed(2)}`;
+        itemPrice.className = "item-price";
+
+        itemDetails.appendChild(itemName);
+        itemDetails.appendChild(itemSize);
+        itemDetails.appendChild(itemQuantity);
+        itemDetails.appendChild(itemPrice);
+
+        const removeBtn = document.createElement("button");
+        removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
+        removeBtn.className = "remove-btn";
+        removeBtn.title = "Remove item";
+        removeBtn.onclick = () => {
+          removeItem(index);
+        };
+
+        li.appendChild(itemImage);
+        li.appendChild(itemDetails);
+        li.appendChild(removeBtn);
+        cartSummary.appendChild(li);
+      });
+
+      const total = calculateTotal();
+      totalAmount.textContent = total.toFixed(2);
+      localStorage.setItem("cartTotal", total.toFixed(2));
+    }
+
+    function removeItem(index) {
+      if (confirm("Are you sure you want to remove this item from your cart?")) {
+        cart.splice(index, 1);
+        localStorage.setItem("cartItems", JSON.stringify(cart));
+        renderCart();
+      }
+    }
+
+    function goToPayment() {
+      const total = parseFloat(totalAmount.textContent);
+      if (total === 0) {
+        alert("Your cart is empty. Please add items before proceeding to payment.");
+      } else {
+        // Clear the cart from localStorage when proceeding to payment
+        localStorage.removeItem("cartItems");
+        localStorage.removeItem("cartTotal");
+        window.location.href = "Payment.html";
+      }
+    }
+
+    function goToProject() {
+      window.location.href = "index.html";
+    }
+
+    // Render cart on page load
+    renderCart();
+  </script>
+</body>
+</html>

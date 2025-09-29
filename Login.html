@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | Your Account</title>
+  <link rel="stylesheet" type="text/css" href="Login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="login-wrapper">
+      <div class="login-container">
+        <div class="login-header">
+          <h2>Welcome Back</h2>
+          <p>Please enter your details to sign in</p>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <div class="input-group">
+            <label for="usernameOrEmail"><i class="fas fa-user"></i> Username or Email</label>
+            <input type="text" id="usernameOrEmail" placeholder="Enter your username or email" required />
+            <span class="input-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="password"><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="password" placeholder="At least 6 characters" required minlength="6" />
+            <span class="input-error"></span>
+            <span class="toggle-password" id="togglePassword"><i class="far fa-eye"></i></span>
+          </div>
+
+          <div class="remember-forgot">
+            <label class="checkbox-container">
+              <input type="checkbox" id="rememberMe" />
+              <span class="checkmark"></span> Remember me
+            </label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="login-btn">
+            <span class="btn-text">LOG IN</span>
+            <div class="btn-loader hidden">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+          </button>
+
+          <div class="error-message" id="error-msg"></div>
+        </form>
+
+        <div class="divider"><span>Or continue with</span></div>
+
+        <div class="social-login">
+          <button class="social-btn google-btn" id="googleLogin">
+            <i class="fab fa-google"></i> Google
+          </button>
+          <button class="social-btn facebook-btn" id="facebookLogin">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </button>
+        </div>
+
+        <div class="signup-link">
+          Don't have an account? <a href="Sign-up.html">Sign up</a>
+        </div>
+      </div>
+
+      <div class="login-graphics">
+        <div class="graphic-container">
+          <div class="floating-icon" style="--delay: 0s; --x: 20px; --y: 30px"><i class="fas fa-shield-alt"></i></div>
+          <div class="floating-icon" style="--delay: 1s; --x: -15px; --y: 80px"><i class="fas fa-key"></i></div>
+          <div class="floating-icon" style="--delay: 2s; --x: 25px; --y: 150px"><i class="fas fa-lock"></i></div>
+          <div class="graphic-content">
+            <h3>Secure Access</h3>
+            <p>Your data is protected with industry-standard encryption</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="Login.js"></script>
+</body>
+</html>
