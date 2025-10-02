@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Hide loading animation and show main content after 2 seconds
+  setTimeout(() => {
+    document.getElementById('loadingAnimation').style.display = 'none';
+    document.querySelector('.container').style.display = 'block';
+  }, 2000);
+
   const form = document.getElementById('loginForm');
   const errorMsg = document.getElementById('error-msg');
   const togglePassword = document.getElementById('togglePassword');
@@ -9,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const googleLoginBtn = document.getElementById('googleLogin');
   const facebookLoginBtn = document.getElementById('facebookLogin');
 
-  // Remove Facebook button (if you don’t want it)
+  // Remove Facebook button (if you don't want it)
   facebookLoginBtn.style.display = 'none';
 
   // ✅ Correct Firebase config
@@ -188,7 +194,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function showSuccessMessage(message) {
     errorMsg.textContent = message;
-    errorMsg.style.color = 'green';
+    errorMsg.style.color = 'var(--success-color)';
+    errorMsg.classList.add('success-message');
+    errorMsg.classList.remove('error-message');
   }
 
   // Forgot password
