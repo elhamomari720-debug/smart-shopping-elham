@@ -1,22 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #3a86ff;
-  --primary-dark: #2563eb;
-  --primary-light: #60a5fa;
-  --success: #10b981;
-  --success-light: #34d399;
-  --dark: #1f2937;
-  --dark-light: #374151;
-  --light: #f8fafc;
-  --gray: #6b7280;
-  --gray-light: #9ca3af;
-  --border: #e5e7eb;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.15);
+  --primary: #667eea;
+  --primary-dark: #5a6fd8;
+  --primary-light: #764ba2;
+  --secondary: #f093fb;
+  --accent: #4facfe;
+  --success: #667eea; /* Changed to blue */
+  --success-light: #764ba2; /* Changed to purple */
+  --dark: #2d3748;
+  --dark-light: #4a5568;
+  --light: #ffffff;
+  --gray: #718096;
+  --gray-light: #a0aec0;
+  --gray-lighter: #f7fafc;
+  --border: #e2e8f0;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  --gradient: linear-gradient(135deg, #3a86ff 0%, #10b981 100%);
-  --gradient-light: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-light: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
 
 * {
@@ -29,7 +32,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
-  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   position: relative;
   display: flex;
@@ -62,7 +65,7 @@ body {
 .shape-1 {
   width: 300px;
   height: 300px;
-  background: var(--primary);
+  background: white;
   top: -100px;
   left: -100px;
   animation-delay: 0s;
@@ -71,7 +74,7 @@ body {
 .shape-2 {
   width: 200px;
   height: 200px;
-  background: var(--success);
+  background: var(--secondary);
   bottom: -50px;
   right: 10%;
   animation-delay: 5s;
@@ -80,7 +83,7 @@ body {
 .shape-3 {
   width: 150px;
   height: 150px;
-  background: var(--primary-light);
+  background: var(--accent);
   top: 40%;
   left: 80%;
   animation-delay: 10s;
@@ -104,14 +107,14 @@ body {
   top: 30px;
   left: 30px;
   background-color: white;
-  color: var(--dark);
+  color: var(--primary);
   padding: 12px 24px;
   border: 1px solid var(--border);
   border-radius: 12px;
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-lg);
   transition: var(--transition);
   display: flex;
   align-items: center;
@@ -120,7 +123,7 @@ body {
 }
 
 .back-button:hover {
-  background-color: #f8fafc;
+  background-color: var(--gray-lighter);
   transform: translateX(-5px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
@@ -207,6 +210,9 @@ body {
   stroke: #fff;
   stroke-miterlimit: 10;
   animation: fill-checkmark 0.4s ease-in-out 0.4s forwards, scale-checkmark 0.3s ease-in-out 0.9s both;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: checkmarkEntrance 0.8s ease-out 0.5s forwards;
 }
 
 .checkmark-circle {
@@ -214,16 +220,32 @@ body {
   stroke-dashoffset: 166;
   stroke-width: 3;
   stroke-miterlimit: 10;
-  stroke: var(--success);
+  stroke: var(--primary); /* Changed to blue */
   fill: none;
-  animation: stroke-checkmark 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  animation: stroke-checkmark 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
 
 .checkmark-check {
   transform-origin: 50% 50%;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
-  animation: stroke-checkmark 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+  stroke: var(--primary); /* Changed to blue */
+  animation: stroke-checkmark 0.5s cubic-bezier(0.65, 0, 0.45, 1) 1.2s forwards;
+}
+
+@keyframes checkmarkEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-30deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 @keyframes stroke-checkmark {
@@ -243,7 +265,7 @@ body {
 
 @keyframes fill-checkmark {
   100% {
-    box-shadow: inset 0px 0px 0px 50px var(--success);
+    box-shadow: inset 0px 0px 0px 50px rgba(102, 126, 234, 0.1);
   }
 }
 
@@ -389,13 +411,13 @@ body {
   justify-content: center;
   gap: 15px;
   padding: 15px 20px;
-  background: rgba(16, 185, 129, 0.05);
+  background: rgba(102, 126, 234, 0.05);
   border-radius: 12px;
-  border-left: 4px solid var(--success);
+  border-left: 4px solid var(--primary);
 }
 
 .detail-item i {
-  color: var(--success);
+  color: var(--primary);
   font-size: 20px;
 }
 
@@ -412,7 +434,7 @@ body {
 
 /* Order Summary */
 .order-summary {
-  background: #f8fafc;
+  background: var(--gray-lighter);
   border-radius: 16px;
   padding: 25px;
   margin: 30px 0;
@@ -475,13 +497,13 @@ body {
 .btn-primary {
   background: var(--gradient);
   color: white;
-  box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
 .btn-primary:hover {
   background: var(--gradient-light);
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(58, 134, 255, 0.4);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
 }
 
 .btn-secondary {
@@ -492,7 +514,7 @@ body {
 }
 
 .btn-secondary:hover {
-  background: #f8fafc;
+  background: var(--gray-lighter);
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
@@ -507,8 +529,9 @@ body {
 .testimonials h3 {
   font-size: 24px;
   margin-bottom: 30px;
-  color: var(--dark);
+  color: white;
   font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .testimonial-cards {
@@ -522,7 +545,7 @@ body {
   background: white;
   padding: 25px;
   border-radius: 16px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-lg);
   flex: 1;
   min-width: 250px;
   max-width: 320px;
@@ -531,7 +554,7 @@ body {
 
 .testimonial-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .stars {
@@ -565,7 +588,7 @@ body {
 .floating-icon {
   position: absolute;
   font-size: 24px;
-  color: rgba(58, 134, 255, 0.1);
+  color: rgba(255, 255, 255, 0.1);
   animation: float-icon 20s infinite linear;
 }
 
