@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
   deliveryDate.setDate(currentDate.getDate() + 3);
   document.getElementById('delivery-date').textContent = deliveryDate.toLocaleDateString('en-US', options);
   
+  // Trigger tick animation
+  triggerTickAnimation();
+  
   // Add subtle animation to elements as they appear
   const observerOptions = {
     threshold: 0.1,
@@ -59,6 +62,33 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// Function to trigger the tick animation
+function triggerTickAnimation() {
+  const checkmark = document.querySelector('.checkmark');
+  const checkmarkCircle = document.querySelector('.checkmark-circle');
+  const checkmarkCheck = document.querySelector('.checkmark-check');
+  
+  // Reset animations
+  checkmark.style.animation = 'none';
+  checkmarkCircle.style.animation = 'none';
+  checkmarkCheck.style.animation = 'none';
+  
+  // Trigger reflow
+  void checkmark.offsetWidth;
+  void checkmarkCircle.offsetWidth;
+  void checkmarkCheck.offsetWidth;
+  
+  // Restart animations with delays
+  checkmark.style.animation = 'checkmarkEntrance 0.8s ease-out 0.5s forwards';
+  checkmarkCircle.style.animation = 'stroke-checkmark 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards';
+  checkmarkCheck.style.animation = 'stroke-checkmark 0.5s cubic-bezier(0.65, 0, 0.45, 1) 1.2s forwards';
+  
+  // Add pulsing effect after animation completes
+  setTimeout(() => {
+    checkmark.style.animation += ', pulseTick 2s ease-in-out 3s infinite';
+  }, 2000);
+}
+
 // Add ripple effect styles dynamically
 const style = document.createElement('style');
 style.textContent = `
@@ -80,6 +110,18 @@ style.textContent = `
   .btn-primary, .btn-secondary {
     position: relative;
     overflow: hidden;
+  }
+  
+  /* Additional tick animation for continuous effect */
+  @keyframes pulseTick {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
   }
 `;
 document.head.appendChild(style);
