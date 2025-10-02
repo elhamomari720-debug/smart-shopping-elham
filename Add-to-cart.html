@@ -9,6 +9,40 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
+  <!-- Loading Animation -->
+  <div class="loading-animation" id="loadingAnimation">
+    <div class="rocket-wrapper">
+      <div class="rocket">
+        <div class="rocket-body">
+          <div class="rocket-nose"></div>
+          <div class="rocket-main">
+            <div class="window"></div>
+          </div>
+          <div class="rocket-fins">
+            <div class="fin fin-left"></div>
+            <div class="fin fin-right"></div>
+          </div>
+        </div>
+        <div class="fire-container">
+          <div class="fire">
+            <div class="flame flame-1"></div>
+            <div class="flame flame-2"></div>
+            <div class="flame flame-3"></div>
+            <div class="spark spark-1"></div>
+            <div class="spark spark-2"></div>
+            <div class="spark spark-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading-text">
+      <h2>Loading Your Cart</h2>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="page-wrapper">
     <header class="cart-header">
       <button class="back-btn" onclick="goToProject()">
@@ -53,8 +87,8 @@
               </div>
             </div>
             <button class="checkout-btn" onclick="goToPayment()">
-              <span>Proceed to Checkout</span>
-              <i class="fas fa-arrow-right"></i>
+              <span>Launch Checkout</span>
+              <i class="fas fa-rocket"></i>
             </button>
             <div class="secure-checkout">
               <i class="fas fa-lock"></i>
@@ -67,6 +101,14 @@
   </div>
 
   <script>
+    // Show loading animation first
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        document.getElementById('loadingAnimation').style.display = 'none';
+        document.querySelector('.page-wrapper').style.display = 'block';
+      }, 2000);
+    });
+
     let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
 
     const cartSummary = document.getElementById("cart-summary");
