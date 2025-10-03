@@ -3,40 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Shopping! 🛒</title>
+  <title>Smart Shopping! 🛒 - Premium Experience</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-  <!-- Combined Header with Navigation -->
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <div class="logo-spinner"></div>
+        <h2>Smart Shopping</h2>
+      </div>
+      <div class="loading-progress">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <span class="loading-text">Loading Premium Experience...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enhanced Header with Glass Morphism -->
   <header>
     <div class="header-left">
-      <img src="images (4).jpg" alt="Account Logo" class="account-logo" />
-      <h1>Smart Shopping! 🛒</h1>
+      <div class="logo-container">
+        <img src="images (4).jpg" alt="Account Logo" class="account-logo" />
+        <h1>Smart Shopping! 🛒</h1>
+      </div>
     </div>
 
     <!-- Navigation integrated into header -->
     <nav class="header-navigation">
       <ul>
-        <li><a href="#" id="nav-home">HOME</a></li>
-        <li><a href="#" id="nav-products">PRODUCTS</a></li>
-        <li><a href="About.html" id="nav-about">ABOUT US</a></li>
+        <li><a href="#" id="nav-home" class="nav-link active"><i class="fas fa-home"></i> HOME</a></li>
+        <li><a href="#" id="nav-products" class="nav-link"><i class="fas fa-box"></i> PRODUCTS</a></li>
+        <li><a href="About.html" id="nav-about" class="nav-link"><i class="fas fa-info-circle"></i> ABOUT US</a></li>
       </ul>
     </nav>
 
     <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search products..." />
+      <div class="search-input-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="search-input" placeholder="Search products..." />
+      </div>
       <button id="search-btn" class="btn-custom"><i class="fas fa-search"></i> Search</button>
     </div>
 
     <!-- Welcome message placed between Open Cart and Login -->
     <div class="header-buttons">
-      <button id="buy-btn" class="btn-custom"><i class="fas fa-shopping-cart"></i> Open Cart</button>
+      <button id="buy-btn" class="btn-custom cart-btn">
+        <i class="fas fa-shopping-cart"></i> 
+        <span class="btn-text">Open Cart</span>
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
       <span id="welcome-message" class="welcome-message">Welcome, User</span>
-      <button id="login-btn" class="btn-custom"><i class="fas fa-user"></i> Login</button>
+      <button id="login-btn" class="btn-custom login-btn">
+        <i class="fas fa-user"></i> 
+        <span class="btn-text">Login</span>
+      </button>
     </div>
   </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h2 class="hero-title" data-aos="fade-down" data-aos-duration="1000">Premium Shopping Experience</h2>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Discover the latest trends in fashion, sports, and lifestyle</p>
+      <div class="hero-arrow" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+    <div class="hero-background">
+      <div class="floating-element el-1"></div>
+      <div class="floating-element el-2"></div>
+      <div class="floating-element el-3"></div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stat-number" data-count="10000">0</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-icon">
+            <i class="fas fa-box-open"></i>
+          </div>
+          <div class="stat-number" data-count="48">0</div>
+          <div class="stat-label">Products Available</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="stat-number" data-count="5">0</div>
+          <div class="stat-label">Star Rating</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="stat-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="stat-number" id="total-likes-count">0</div>
+          <div class="stat-label">Total Likes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filters -->
+  <section class="category-section">
+    <div class="container">
+      <h3 class="section-title" data-aos="fade-up">Shop by Category</h3>
+      <div class="category-filters">
+        <button class="category-filter active" data-category="all">All Products</button>
+        <button class="category-filter" data-category="clothing">Clothing</button>
+        <button class="category-filter" data-category="footwear">Footwear</button>
+        <button class="category-filter" data-category="accessories">Accessories</button>
+        <button class="category-filter" data-category="toys">Toys</button>
+      </div>
+    </div>
+  </section>
 
   <div id="back-btn-container">
     <button id="back-btn" class="btn"><i class="fas fa-arrow-left"></i> Back to All Products</button>
@@ -45,9 +140,82 @@
   <!-- Products Section Title -->
   <div id="products-title" class="products-title-container">
     <h2>OUR PRODUCTS</h2>
+    <p class="products-subtitle">Handpicked items just for you</p>
+  </div>
+
+  <!-- Product Sorting -->
+  <div class="sorting-container">
+    <div class="container">
+      <div class="sorting-options">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" class="sort-select">
+          <option value="default">Default</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+          <option value="name-desc">Name: Z to A</option>
+          <option value="popular">Most Popular</option>
+        </select>
+      </div>
+    </div>
   </div>
 
   <main id="product-list"></main>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-content" data-aos="fade-up">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to our newsletter and get 10% off your first order</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email" />
+          <button class="btn-primary">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick View Modal -->
+  <div id="quick-view-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="modal-body">
+        <div class="modal-image-container">
+          <img id="modal-product-image" src="" alt="Product Image" />
+        </div>
+        <div class="modal-details">
+          <h3 id="modal-product-name"></h3>
+          <div class="modal-price" id="modal-product-price"></div>
+          <div class="modal-rating">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <span class="rating-text">(4.5/5) 128 Reviews</span>
+          </div>
+          <div class="modal-likes">
+            <i class="fas fa-heart"></i>
+            <span id="modal-likes-count">0</span> likes
+          </div>
+          <div class="modal-description">
+            <p>Premium quality product with excellent craftsmanship. Designed for comfort and style.</p>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-primary add-to-cart-modal">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+            <button class="btn-secondary like-btn-modal">
+              <i class="far fa-heart"></i> <span id="modal-like-text">Like</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="zoom-modal" onclick="closeZoom()">
     <div class="zoom-controls">
@@ -58,6 +226,58 @@
     <img id="zoomed-img" src="" alt="Zoomed Image" />
   </div>
 
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Smart Shopping</h4>
+          <p>Your one-stop destination for premium products and exceptional shopping experience.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h5>Customer Service</h5>
+          <ul>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h5>Contact Info</h5>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> 123 Shopping Street</li>
+            <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> info@smartshopping.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Smart Shopping. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="index.js"></script>
 </body>
 </html>
